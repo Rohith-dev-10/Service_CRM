@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Technicians</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f7fc;
+      padding: 50px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 30px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    h2 {
+      font-size: 28px;
+      color: #333;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .create-link {
+      display: block;
+      text-align: center;
+      font-size: 20px;
+      color: #4CAF50;
+      text-decoration: none;
+      margin-bottom: 20px;
+    }
+
+    .create-link:hover {
+      text-decoration: underline;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    li span {
+      font-size: 18px;
+      color: #333;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      font-size: 14px;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .btn-edit {
+      background-color: #007bff;
+    }
+
+    .btn-edit:hover {
+      background-color: #0056b3;
+    }
+
+    .btn-delete {
+      background-color: #dc3545;
+    }
+
+    .btn-delete:hover {
+      background-color: #a71d2a;
+    }
+
+    .empty-message {
+      text-align: center;
+      font-size: 18px;
+      color: #666;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Technicians</h2>
+    <a href="{% url 'technician_create' %}" class="create-link">Create New Technician</a>
+    
+    {% if technicians %}
+      <ul>
+        {% for technician in technicians %}
+          <li>
+            <span>{{ technician.name }} - {{ technician.skills }}</span>
+            <div class="actions">
+              <a href="{% url 'technician_update' technician.pk %}" class="btn btn-edit">Edit</a>
+              <a href="{% url 'technician_delete' technician.pk %}" class="btn btn-delete">Delete</a>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="empty-message">No technicians found. Please create one.</p>
+    {% endif %}
+  </div>
+</body>
+</html>

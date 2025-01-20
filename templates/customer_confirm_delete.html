@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Delete Confirmation</title>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen p-6">
+        <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-2xl font-bold text-gray-900">Delete Confirmation</h2>
+            <p class="text-gray-600">Are you sure you want to delete "{{ customer.name }}"?</p>
+            <form method="POST" class="space-x-4 mt-6">
+                {% csrf_token %}
+                <button type="submit" class="px-6 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors">
+                    Yes, Delete
+                </button>
+                <a href="{% url 'customer_list' %}" class="px-6 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 transition-colors">
+                    Cancel
+                </a>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

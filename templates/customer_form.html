@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>{% if form.instance.pk %}Update{% else %}Create{% endif %} Customer</title>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen p-6">
+        <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-2xl font-bold text-gray-900 text-center">
+                {% if form.instance.pk %}Update{% else %}Create{% endif %} Customer
+            </h2>
+            <form method="POST" class="space-y-4 mt-6">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="w-full sm:w-auto px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+                    Submit
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

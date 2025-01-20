@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>{% if form.instance.pk %}Update{% else %}Create{% endif %} Technician</title>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen p-6">
+        <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-2xl font-bold text-gray-900 text-center">
+                {% if form.instance.pk %}Update{% else %}Create{% endif %} Technician
+            </h2>
+
+            {% if form.errors %}
+                <div class="text-red-600">
+                    <ul>
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            <form method="POST" class="space-y-4 mt-6">
+                {% csrf_token %}
+                
+                <div class="space-y-4">
+                    <div class="space-y-1">
+                        <label for="{{ form.name.id_for_label }}" class="block text-sm font-medium text-gray-700">Name</label>
+                        {{ form.name }}
+                    </div>
+                    <div class="space-y-1">
+                        <label for="{{ form.skills.id_for_label }}" class="block text-sm font-medium text-gray-700">Skills</label>
+                        {{ form.skills }}
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full sm:w-auto px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+                    Submit
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

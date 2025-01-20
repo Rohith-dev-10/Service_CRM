@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Customers</title>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen p-6">
+        <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-900">Customers</h2>
+                <a href="{% url 'customer_create' %}" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors">
+                    Create New Customer
+                </a>
+            </div>
+            <div class="divide-y divide-gray-200">
+                {% for customer in customers %}
+                <div class="py-4 flex justify-between items-center">
+                    <div>
+                        <p class="text-lg font-medium">{{ customer.name }}</p>
+                        <p class="text-gray-600">{{ customer.email }}</p>
+                    </div>
+                    <div class="space-x-4">
+                        <a href="{% url 'customer_update' customer.pk %}" class="text-blue-600 hover:text-blue-800">Edit</a>
+                        <a href="{% url 'customer_delete' customer.pk %}" class="text-red-600 hover:text-red-800">Delete</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
